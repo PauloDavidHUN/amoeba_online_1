@@ -20,6 +20,8 @@ const db = firebase.database();
 // Játék konstansok
 // ==========================================================
 const BOARD_SIZE = 15;
+let cols = 40; // Oszlopok
+let rows = 24; // Sorok
 const WIN_LENGTH = 5;
 
 // ==========================================================
