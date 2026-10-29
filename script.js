@@ -56,7 +56,7 @@ function generateRoomCode() {
 // Üres tábla létrehozása
 // ==========================================================
 function createEmptyBoard() {
-    return new Array(BOARD_SIZE * BOARD_SIZE).fill("");
+    return new Array(cols * rows).fill("");
 }
 
 // ==========================================================
@@ -137,8 +137,11 @@ function enterGame() {
 // ==========================================================
 function createBoardDOM() {
     board.innerHTML = "";
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 36px)`;
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+    // Itt mondjuk meg neki, hogy hány oszlop és sor legyen, szépen elosztva
+    board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    board.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+
+    for (let i = 0; i < cols * rows; i++) {
         const cellDiv = document.createElement('div');
         cellDiv.classList.add('cell');
         cellDiv.dataset.index = i;
@@ -223,15 +226,15 @@ function handleCellClick(index) {
 // Győzelem ellenőrzése (5 egymás melletti jel bármely irányban)
 // ==========================================================
 function checkWin(boardState, index, player) {
-    const row = Math.floor(index / BOARD_SIZE);
-    const col = index % BOARD_SIZE;
+    const row = Math.floor(index / cols);
+    const col = index % cols;
     const directions = [
         { dr: 0, dc: 1 }, { dr: 1, dc: 0 }, { dr: 1, dc: 1 }, { dr: 1, dc: -1 }
     ];
 
     function toIndex(r, c) {
-        if (r < 0 || r >= BOARD_SIZE || c < 0 || c >= BOARD_SIZE) return -1;
-        return r * BOARD_SIZE + c;
+        if (r < 0 || r >= rows || c < 0 || c >= cols) return -1;
+        return r * cols + c;
     }
 
     for (const { dr, dc } of directions) {
@@ -248,7 +251,6 @@ function checkWin(boardState, index, player) {
     }
     return null;
 }
-
 // ==========================================================
 // Új játék gomb — visszaállítja a táblát ugyanabban a szobában
 // ==========================================================
