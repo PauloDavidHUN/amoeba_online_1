@@ -1,3 +1,5 @@
+**THE GAME: ** https://paulodavidhun.github.io/amoeba_online_1/
+
 **HUN**
 • Csak haverom megkérdezte hogy "AI-jal mennyi idő alatt lehet összerakni egy egyszerűbb online" játékot? 
 
